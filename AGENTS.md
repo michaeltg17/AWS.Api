@@ -77,7 +77,7 @@
 │   │   ├── Application.csproj
 │   │   ├── DependencyConfigurator.cs
 │   │   ├── Exceptions/
-│   │   │   ├── TemplateApiException.cs       # base exception
+│   │   │   ├── AWSApiException.cs       # base exception
 │   │   │   ├── NotFoundException.cs
 │   │   │   ├── NotFoundException(T).cs
 │   │   │   ├── NotAllFoundException.cs
@@ -112,9 +112,9 @@
 │   │   ├── Logging/
 │   │   │   └── ILoggerExtensions.cs    # source-generated log messages
 │   │   └── Settings/
-│   │       ├── ITemplateApiSettings.cs
-    │   │       ├── TemplateApiSettings.cs     # POCO bound from config
-    │   │       └── TemplateApiSettingsValidator.cs # IValidateOptions for settings
+│   │       ├── IAWSApiSettings.cs
+    │   │       ├── AWSApiSettings.cs     # POCO bound from config
+    │   │       └── AWSApiSettingsValidator.cs # IValidateOptions for settings
 │   ├── Domain/                     # domain entities
 │   │   ├── Domain.csproj
 │   │   ├── Models/
@@ -215,7 +215,7 @@
 
 ## Configuration
 
-App settings bind to `TemplateApiSettings` via `builder.Configuration`. Validated at startup via `TemplateApiSettingsValidator` using `IValidateOptions`. Application fails to start if required settings are missing.
+App settings bind to `AWSApiSettings` via `builder.Configuration`. Validated at startup via `AWSApiSettingsValidator` using `IValidateOptions`. Application fails to start if required settings are missing.
 
 `Program.cs` is a minimal entrypoint that delegates to `Startup.Run()` for DI setup, Serilog configuration, and endpoint registration.
 

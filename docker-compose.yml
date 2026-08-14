@@ -25,7 +25,7 @@ services:
       postgresql:
         condition: service_healthy
     environment:
-      - POSTGRESQL_CONNECTION_STRING=${TemplateApi__PostgreSqlConnectionString}
+      - POSTGRESQL_CONNECTION_STRING=${AWSApi__PostgreSqlConnectionString}
     restart: "no"
     networks:
       - app-network
@@ -42,8 +42,8 @@ services:
       - "5000:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - TemplateApi__PostgreSqlConnectionString=${TemplateApi__PostgreSqlConnectionString}
-      - TemplateApi__ImageApiKey=${TemplateApi__ImageApiKey}
+      - AWSApi__PostgreSqlConnectionString=${AWSApi__PostgreSqlConnectionString}
+      - AWSApi__ImageApiKey=${AWSApi__ImageApiKey}
     networks:
       - app-network
 
