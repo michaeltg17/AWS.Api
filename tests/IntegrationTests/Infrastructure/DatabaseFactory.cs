@@ -9,7 +9,7 @@ namespace IntegrationTests.Infrastructure
 {
     public static class DatabaseFactory
     {
-        const string DatabaseName = "template_api";
+        const string DatabaseName = "aws_api";
 
         public static async Task<Database> Create(string? containerName = null, bool keepAlive = false)
         {

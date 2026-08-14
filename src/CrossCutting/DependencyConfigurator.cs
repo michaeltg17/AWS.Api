@@ -9,12 +9,12 @@ namespace CrossCutting
         public static IServiceCollection AddCrossCuttingDependencies(this IServiceCollection services)
         {
             services
-                .AddOptionsWithValidateOnStart<TemplateApiSettings>()
-                .BindConfiguration(ITemplateApiSettings.Section);
+                .AddOptionsWithValidateOnStart<AWSApiSettings>()
+                .BindConfiguration(IAWSApiSettings.Section);
 
-            services.AddSingleton<IValidateOptions<TemplateApiSettings>, TemplateApiSettingsValidator>();
+            services.AddSingleton<IValidateOptions<AWSApiSettings>, AWSApiSettingsValidator>();
 
-            services.AddSingleton<ITemplateApiSettings>(sp => sp.GetRequiredService<IOptions<TemplateApiSettings>>().Value);
+            services.AddSingleton<IAWSApiSettings>(sp => sp.GetRequiredService<IOptions<AWSApiSettings>>().Value);
 
             return services;
         }

@@ -1,8 +1,8 @@
 namespace CrossCutting.Settings
 {
-    public interface ITemplateApiSettings
+    public interface IAWSApiSettings
     {
-        public const string Section = "TemplateApi";
+        public const string Section = "AWSApi";
         public string PostgreSqlConnectionString { get; }
         public Uri ImageApiUrl { get; }
         public string ImageApiKey { get; }

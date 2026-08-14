@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SOLUTION="Template.Api.slnx"
+SOLUTION="AWS.Api.slnx"
 
 echo "========================================="
 echo "  Running CI"

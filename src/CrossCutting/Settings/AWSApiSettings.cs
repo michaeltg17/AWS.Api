@@ -1,6 +1,6 @@
 namespace CrossCutting.Settings
 {
-    public record TemplateApiSettings : ITemplateApiSettings
+    public record AWSApiSettings : IAWSApiSettings
     {
         public required long MaxImageSizeMb { get; set; }
         public required IEnumerable<string> AllowedImageExtensions { get; set; }
