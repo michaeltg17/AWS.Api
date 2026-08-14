@@ -1,4 +1,4 @@
-# Template.Api
+# AWS.Api
 
 .NET 10 layered ASP.NET Core API template with a clean architecture: Api, ApiClient, Application, Core, CrossCutting, Domain, and Persistence projects.
 
@@ -30,7 +30,7 @@
 ├── Dockerfile.ci                   # CI runtime image with test dependencies
 ├── Dockerfile.migrations           # multi-stage: SDK build → runtime for migrator
 ├── README.md
-├── Template.Api.slnx
+├── AWS.Api.slnx
 ├── .github/workflows/              # GH Actions
 │   └── ci.yml
 ├── src/
