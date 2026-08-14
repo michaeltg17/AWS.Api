@@ -1,0 +1,52 @@
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: postgresql
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=${PostgresPassword}
+      - POSTGRES_DB=Database
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-network
+
+  migrator:
+    build:
+      context: .
+      dockerfile: Dockerfile.migrations
+    container_name: migrator
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    environment:
+      - POSTGRESQL_CONNECTION_STRING=${TemplateApi__PostgreSqlConnectionString}
+    restart: "no"
+    networks:
+      - app-network
+
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      migrator:
+        condition: service_completed_successfully
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - TemplateApi__PostgreSqlConnectionString=${TemplateApi__PostgreSqlConnectionString}
+      - TemplateApi__ImageApiKey=${TemplateApi__ImageApiKey}
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
