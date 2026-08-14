@@ -51,11 +51,11 @@ namespace IntegrationTests.Fixtures
                 services.AddTransient<IStartupFilter, TestStartupFilter>();
                 services.AddSingleton<IInjectableTestOutputSink>(injectableTestOutputSink);
 
-                services.Configure<TemplateApiSettings>(templateSettings =>
+                services.Configure<AWSApiSettings>(awsSettings =>
                 {
-                    templateSettings.PostgreSqlConnectionString = database!.ConnectionString;
-                    templateSettings.ImageApiUrl = imageApiMock!.Server.Uri;
-                    templateSettings.ImageApiKey = Test.ApiKey;
+                    awsSettings.PostgreSqlConnectionString = database!.ConnectionString;
+                    awsSettings.ImageApiUrl = imageApiMock!.Server.Uri;
+                    awsSettings.ImageApiKey = Test.ApiKey;
                 });
 
                 if (testSettings.EnableSqlLogging)

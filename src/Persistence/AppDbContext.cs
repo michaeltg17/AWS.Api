@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
 {
-    public class AppDbContext(DbContextOptions<AppDbContext> options, ITemplateApiSettings templateSettings) : DbContext(options)
+    public class AppDbContext(DbContextOptions<AppDbContext> options, IAWSApiSettings awsApiSettings) : DbContext(options)
     {
         public virtual DbSet<Product> Products { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseNpgsql(templateSettings.PostgreSqlConnectionString)
+                .UseNpgsql(awsApiSettings.PostgreSqlConnectionString)
                 .UseSnakeCaseNamingConvention();
         }
 
